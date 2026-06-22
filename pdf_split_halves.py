@@ -35,8 +35,8 @@ def split_pdf_halves(input_path: str, output_path: str) -> None:
 
         print(f"  Page {page_num + 1}: {width:.1f} x {y1 - y0:.1f} pt  →  left/right {width / 2:.1f} x {y1 - y0:.1f} pt")
 
-        with open(output_path, "wb") as f:
-            writer.write(f)
+    with open(output_path, "wb") as f:
+        writer.write(f)
 
 def main():
     pass
