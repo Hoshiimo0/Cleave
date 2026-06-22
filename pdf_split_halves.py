@@ -39,7 +39,31 @@ def split_pdf_halves(input_path: str, output_path: str) -> None:
         writer.write(f)
 
 def main():
-    pass
+    if len(sys.argv) < 2:
+        print("Usage: python pdf_split_halves.py input.pdf [output.pdf]")
+        sys.exit(1)
+ 
+    input_path = sys.argv[1]
+ 
+    if not os.path.isfile(input_path):
+        print(f"Erorr: file not found: {input_path}")
+        sys.exit(1)
+ 
+    if not input_path.lower().endswith(".pdf"):
+        print(f"Warning: the file extension is not pdf: {input_path}")
+ 
+    if len(sys.argv) >= 3:
+        output_path = sys.argv[2]
+    else:
+        base, ext = os.path.splitext(input_path)
+        output_path = base + "_split" + (ext if ext else ".pdf")
+ 
+    print(f"INPUT: {input_path}")
+    print(f"OUTPUT: {output_path}")
+ 
+    split_pdf_halves(input_path, output_path)
+ 
+    print(f"\nFINISH: {output_path}")
 
 if __name__ == "__main__":
     main()
